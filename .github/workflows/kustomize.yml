@@ -56,8 +56,16 @@ jobs:
     needs: build
 
     steps:
-      - name: Try the cluster!
-        run: kubectl get pods
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup Minikube
+        uses: manusa/actions-setup-minikube@v2.6.0
+        with:
+          minikube version: 'v1.25.1'
+          kubernetes version: 'v1.24.0'
+      - name: Interact with the cluster
+        run: kubectl get nodes
+          
         continue-on-error: true
   
   deploy:
