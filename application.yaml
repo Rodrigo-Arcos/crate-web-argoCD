@@ -9,10 +9,10 @@ spec:
   source:
     repoURL: https://github.com/rodrigo-arcos/crate-web-argoCD.git
     targetRevision: HEAD
-    path: dev
+    path: manifests
   destination: 
     server: https://kubernetes.default.svc
-    namespace: frontend
+    namespace: kustomize
 
   syncPolicy:
     syncOptions:
