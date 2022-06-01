@@ -49,20 +49,29 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
-  
-  deploy:
-    name: Desplegar en minikube
+
+  job1:
+    name: Crear aplicación en ArgoCD
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-      - name: Crear namespace en minikube
-        run: |
-          namespaceExists = 'kubectl get namespace | grep kustomize | wc -l'
-          if [$namespaceExists -eq 0]
-          then
-            echo 'kubectl create namespace kustomize'
-          fi
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
+      - name: Try the cluster!
+        run: |-
+          kubectl get pods
+          ls
+        continue-on-error: true
+  
+  deploy:
+    name: Desplegar en minikube
+    runs-on: ubuntu-latest
+    needs: job1
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
 
       - name: Setup Kustomize
         uses: imranismail/setup-kustomize@v1
