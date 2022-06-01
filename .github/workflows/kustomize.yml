@@ -53,10 +53,10 @@ jobs:
   job1:
     name: Crear aplicación en ArgoCD
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Start minikube
-      uses: medyagh/setup-minikube@master
+      - name: Start minikube
+        uses: medyagh/setup-minikube@master
       - name: Try the cluster!
         run: |-
           cd ..
