@@ -1,1 +1,1 @@
-crate-web-argoCD
+crate-web
