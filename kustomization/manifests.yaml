@@ -27,7 +27,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: rodrigoarcos/frontend-jenkins:3
+      - image: rodrigoarcos/frontend-jenkins:4
         imagePullPolicy: IfNotPresent
         name: frontend
         ports:
