@@ -3,14 +3,14 @@ kind: Service
 metadata:
   name: frontend
 spec:
-  type: LoadBalancer
+  ports:
+  - nodePort: 31002
+    port: 3000
+    protocol: TCP
+    targetPort: 3000
   selector:
     app: frontend
-  ports:
-  - protocol: TCP
-    port: 3000
-    targetPort: 3000
-    nodePort: 31002
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -27,10 +27,8 @@ spec:
         app: frontend
     spec:
       containers:
-        - name: frontend
-          image: rodrigoarcos/frontend-jenkins:14
-          imagePullPolicy: IfNotPresent
-          ports:
-            - containerPort: 3000
-      imagePullSecrets:
-      - name: regcred
+      - image: rodrigoarcos/frontend-jenkins:$BUILD_NUMBER
+        imagePullPolicy: IfNotPresent
+        name: frontend
+        ports:
+        - containerPort: 3000
