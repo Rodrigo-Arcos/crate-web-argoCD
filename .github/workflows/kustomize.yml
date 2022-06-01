@@ -49,6 +49,19 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  job1:
+    name: Crear aplicación en ArgoCD
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+      - name: Try the cluster!
+        run: |-
+          cd ..
+          kubectl create -f application.yaml -n argocd
+        continue-on-error: true
   
   deploy:
     name: Desplegar en minikube
