@@ -7,7 +7,7 @@ on:
 jobs:
 
   sonarcloud:
-    name: SonarCloud
+    name: Análisis de código estático
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -60,7 +60,6 @@ jobs:
         uses: medyagh/setup-minikube@master
       - name: Try the cluster!
         run: |-
-          cd ..
           kubectl create -f application.yaml -n argocd
         continue-on-error: true
   
