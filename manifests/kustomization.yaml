@@ -8,4 +8,4 @@ images:
 resources:
 - deployment.yaml
 - service.yaml
-- endpoint.yaml
+#- endpoint.yaml
