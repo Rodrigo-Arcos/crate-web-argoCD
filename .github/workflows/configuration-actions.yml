@@ -5,7 +5,7 @@ on:
     branches: 
       - master
 jobs:
-
+ 
   sonarcloud:
     name: Análisis de código estático
     runs-on: ubuntu-latest
